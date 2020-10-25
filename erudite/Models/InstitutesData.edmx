@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="InstituteDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Areas">
+          <Key>
+            <PropertyRef Name="areasId" />
+          </Key>
+          <Property Name="areasId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Area" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="latitude" Type="float" Nullable="false" />
+          <Property Name="longitude" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AvailableSlots">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="slotId" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="slotId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Institute">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="areasId" Type="int" Nullable="false" />
+          <Property Name="fullName" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="fulladdress" Type="nchar" MaxLength="255" Nullable="false" />
+          <Property Name="latitute" Type="float" Nullable="false" />
+          <Property Name="longitude" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="sectionId" />
+          </Key>
+          <Property Name="sectionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="section" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Slot">
+          <Key>
+            <PropertyRef Name="slotId" />
+          </Key>
+          <Property Name="slotId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="slotstartTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="slotendTime" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="subjectId" />
+          </Key>
+          <Property Name="subjectId" Type="int" Nullable="false" />
+          <Property Name="Subjects" Type="nchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_1">
+          <End Role="Institute" Type="Self.Institute" Multiplicity="1" />
+          <End Role="AvailableSlots" Type="Self.AvailableSlots" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Institute">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AvailableSlots">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_2">
+          <End Role="Slot" Type="Self.Slot" Multiplicity="1" />
+          <End Role="AvailableSlots" Type="Self.AvailableSlots" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Slot">
+              <PropertyRef Name="slotId" />
+            </Principal>
+            <Dependent Role="AvailableSlots">
+              <PropertyRef Name="slotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Institute_ToTable">
+          <End Role="Areas" Type="Self.Areas" Multiplicity="1" />
+          <End Role="Institute" Type="Self.Institute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Areas">
+              <PropertyRef Name="areasId" />
+            </Principal>
+            <Dependent Role="Institute">
+              <PropertyRef Name="areasId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InstituteDataModelStoreContainer">
+          <EntitySet Name="Areas" EntityType="Self.Areas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AvailableSlots" EntityType="Self.AvailableSlots" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Institute" EntityType="Self.Institute" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Section" EntityType="Self.Section" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Slot" EntityType="Self.Slot" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_1" Association="Self.FK_1">
+            <End Role="Institute" EntitySet="Institute" />
+            <End Role="AvailableSlots" EntitySet="AvailableSlots" />
+          </AssociationSet>
+          <AssociationSet Name="FK_2" Association="Self.FK_2">
+            <End Role="Slot" EntitySet="Slot" />
+            <End Role="AvailableSlots" EntitySet="AvailableSlots" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Institute_ToTable" Association="Self.FK_Institute_ToTable">
+            <End Role="Areas" EntitySet="Areas" />
+            <End Role="Institute" EntitySet="Institute" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="InstituteDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="areasId" />
+          </Key>
+          <Property Name="areasId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Area1" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="latitude" Type="Double" Nullable="false" />
+          <Property Name="longitude" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Institutes" Relationship="Self.FK_Institute_ToTable" FromRole="Areas" ToRole="Institute" />
+        </EntityType>
+        <EntityType Name="Institute">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="areasId" Type="Int32" Nullable="false" />
+          <Property Name="fullName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="fulladdress" Type="String" MaxLength="255" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="latitute" Type="Double" Nullable="false" />
+          <Property Name="longitude" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Area" Relationship="Self.FK_Institute_ToTable" FromRole="Institute" ToRole="Areas" />
+          <NavigationProperty Name="Slots" Relationship="Self.AvailableSlots" FromRole="Institute" ToRole="Slot" />
+        </EntityType>
+        <EntityType Name="Slot">
+          <Key>
+            <PropertyRef Name="slotId" />
+          </Key>
+          <Property Name="slotId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="slotstartTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="slotendTime" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Institutes" Relationship="Self.AvailableSlots" FromRole="Slot" ToRole="Institute" />
+        </EntityType>
+        <Association Name="FK_Institute_ToTable">
+          <End Role="Areas" Type="Self.Area" Multiplicity="1" />
+          <End Role="Institute" Type="Self.Institute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Areas">
+              <PropertyRef Name="areasId" />
+            </Principal>
+            <Dependent Role="Institute">
+              <PropertyRef Name="areasId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AvailableSlots">
+          <End Role="Institute" Type="Self.Institute" Multiplicity="*" />
+          <End Role="Slot" Type="Self.Slot" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="InstituteDataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Areas" EntityType="Self.Area" />
+          <EntitySet Name="Institutes" EntityType="Self.Institute" />
+          <EntitySet Name="Slots" EntityType="Self.Slot" />
+          <AssociationSet Name="FK_Institute_ToTable" Association="Self.FK_Institute_ToTable">
+            <End Role="Areas" EntitySet="Areas" />
+            <End Role="Institute" EntitySet="Institutes" />
+          </AssociationSet>
+          <AssociationSet Name="AvailableSlots" Association="Self.AvailableSlots">
+            <End Role="Institute" EntitySet="Institutes" />
+            <End Role="Slot" EntitySet="Slots" />
+          </AssociationSet>
+          <EntitySet Name="Sections" EntityType="InstituteDataModel.Section" />
+          <EntitySet Name="Subjects" EntityType="InstituteDataModel.Subject" />
+        </EntityContainer>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="sectionId" />
+          </Key>
+          <Property Name="sectionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="section1" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="subjectId" />
+          </Key>
+          <Property Name="subjectId" Type="Int32" Nullable="false" />
+          <Property Name="Subjects" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="InstituteDataModelStoreContainer" CdmEntityContainer="InstituteDataEntities">
+          <EntitySetMapping Name="Areas">
+            <EntityTypeMapping TypeName="InstituteDataModel.Area">
+              <MappingFragment StoreEntitySet="Areas">
+                <ScalarProperty Name="areasId" ColumnName="areasId" />
+                <ScalarProperty Name="Area1" ColumnName="Area" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Institutes">
+            <EntityTypeMapping TypeName="InstituteDataModel.Institute">
+              <MappingFragment StoreEntitySet="Institute">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="areasId" ColumnName="areasId" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+                <ScalarProperty Name="fulladdress" ColumnName="fulladdress" />
+                <ScalarProperty Name="latitute" ColumnName="latitute" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Slots">
+            <EntityTypeMapping TypeName="InstituteDataModel.Slot">
+              <MappingFragment StoreEntitySet="Slot">
+                <ScalarProperty Name="slotId" ColumnName="slotId" />
+                <ScalarProperty Name="slotstartTime" ColumnName="slotstartTime" />
+                <ScalarProperty Name="slotendTime" ColumnName="slotendTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AvailableSlots" TypeName="InstituteDataModel.AvailableSlots" StoreEntitySet="AvailableSlots">
+            <EndProperty Name="Institute">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <EndProperty Name="Slot">
+              <ScalarProperty Name="slotId" ColumnName="slotId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Sections">
+            <EntityTypeMapping TypeName="InstituteDataModel.Section">
+              <MappingFragment StoreEntitySet="Section">
+                <ScalarProperty Name="section1" ColumnName="section" />
+                <ScalarProperty Name="sectionId" ColumnName="sectionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subjects">
+            <EntityTypeMapping TypeName="InstituteDataModel.Subject">
+              <MappingFragment StoreEntitySet="Subject">
+                <ScalarProperty Name="Subjects" ColumnName="Subjects" />
+                <ScalarProperty Name="subjectId" ColumnName="subjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

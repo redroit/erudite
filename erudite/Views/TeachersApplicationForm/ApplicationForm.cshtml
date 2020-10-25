@@ -1,0 +1,129 @@
+﻿@model erudite.ViewModel.Form
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/studentcss.css"/>
+    <style>
+        h3{
+           text-align: left; color:#8b0933; font-size: 30px;
+        }
+    </style>
+    <title>ApplicationForm</title>
+</head>
+<body>
+    <div class="container">
+        <h1 id="formheading">Teacher Form</h1>
+        @using (Html.BeginForm("Thanks", "TeachersApplicationForm", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+
+            @Html.HiddenFor(model => model.selectedRequirement.selectedSchool)
+            <h3>BioData</h3>
+            <div class="formdesign">
+                @Html.LabelFor(model => model.biodata.name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.biodata.name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.biodata.name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.biodata.number, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.biodata.number, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.biodata.number, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.biodata.email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.biodata.email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.biodata.email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.biodata.dateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.biodata.dateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.biodata.dateOfBirth, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.biodata.NIC, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.biodata.NIC, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.biodata.NIC, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.biodata.address, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.biodata.address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.biodata.address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <h3>Qualifications</h3>
+            <div class="form-group">
+                @Html.LabelFor(model => model.biodata.Qualification, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.biodata.Qualification, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.biodata.Qualification, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.biodata.Field, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.biodata.Field, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.biodata.Field, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <!--Selected Criteria-->
+            <h3>Prospectous</h3>
+            <div class="form-group">
+                <label>Slot</label>
+                <div>
+                    @Html.DropDownListFor(model => model.selectedRequirement.selectedSlot, ViewBag.Slots as SelectList, "--Select your City--", new { })
+                    @Html.ValidationMessageFor(model => model.selectedRequirement.selectedSlot, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Subjects</label>
+                <div>
+                    @Html.DropDownListFor(model => model.selectedRequirement.selectedSubject, ViewBag.Subject as SelectList, "--Select your City--", new { })
+                    @Html.ValidationMessageFor(model => model.selectedRequirement.selectedSubject, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label>Subjects</label>
+                <div>
+                    @Html.DropDownListFor(model => model.selectedRequirement.selectedSection, ViewBag.Section as SelectList, "--Select your City--", new { })
+                    @Html.ValidationMessageFor(model => model.selectedRequirement.selectedSection, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.biodata.image, htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+
+            <input type="file" name="ImageFile" required />
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="but" />
+                </div>
+            </div>
+        }
+    </div>
+</body>
+</html>

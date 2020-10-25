@@ -1,0 +1,38 @@
+﻿@model erudite.ViewModel.InstitutesofParticularArea
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>InstituteList</title>
+    <link rel="stylesheet" href="~/Content/Teachers/teachingCategory.css">
+    <link rel="stylesheet" href="~/Content/Teachers/institutesLocation.css" />
+</head>
+<body>
+    <div class="container">
+        <nav></nav>
+        <div id='pointsAreas' style="width:50%;" onload="createAreas()">
+            <h1 id="areaName">@Model.area</h1>
+            @foreach (var value in Model.institute)
+            {
+                <a style="text-decoration:none;" href="@Url.Action("InstituteDetail","TeacherApplication")/@value.fullName" id="@value.fullName">
+                    <div id="@value" class="areaContainer">
+                        <h1>
+                            @value.fullName
+                        </h1>
+                        <p>@value.fulladdress</p>
+                    </div>
+                </a>
+            }
+        </div>
+        <div id="googleMap" style="float: right; position: absolute; bottom: 10vh; right: 7%; width: 35%; height: 40vh; border:1px solid grey; z-index:1;"></div>
+    </div>
+    <script src="~/Scripts/points.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAl1fwcfBsZ4qvYjbjYQa-hqCXCAVNCnSA&callback=myMap"></script>
+
+</body>
+</html>

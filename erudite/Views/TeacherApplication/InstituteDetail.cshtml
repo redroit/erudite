@@ -1,0 +1,31 @@
+﻿@model erudite.Models.Institute
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/studentcss.css"/>
+    <title>InstituteDetail</title>
+</head>
+<body>
+    <div class="container" style="padding:2% auto;">
+        <h1 class="formheading"> @Model.fullName</h1>
+        <p>@Model.fulladdress</p>
+        <h3>Slots</h3>
+        <ul>
+            @foreach (var value in ViewBag.Slot)
+            {
+                <li>@value.slotstartTime - @value.slotendTime</li>}
+        </ul>
+        <div id="googleMap" style="width: 35%; height: 40vh; border:1px solid grey; z-index:1;"></div>
+        <a href="@Url.Action("ApplicationForm","TeachersApplicationForm")/@Model.Id" id="@Model.Id"  class="but" >Apply</a>
+
+    </div>
+    <script src="~/Scripts/points.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAl1fwcfBsZ4qvYjbjYQa-hqCXCAVNCnSA&callback=myMap"></script>
+</body>
+</html>

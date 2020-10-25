@@ -1,0 +1,121 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/Content/studentcss.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <title>student form</title>
+</head>
+
+<body id="body">
+    <div class="container">
+
+        <!-- heading -->
+        <div id="div1">
+            <h1 id="formheading" style="text-align: center ;">Student Form</h1>
+        </div>
+        <!-- first image -->
+        <div id="forvolunteerpic">
+            <img id="volunteer" src="~/Image/image/vol.png">
+        </div>
+        <!-- form -->
+        <form action="myaction.php" id="studentForm" method="POST">
+            <!-- names -->
+            <h3 style="text-align: left; color:#8b0933; font-size: 30px;">Biography</h3>
+            <div class="formdesign">
+                <label for="fname">First Name:</label>
+                <input type="text" id="firstname" class="username1">
+                <i class="fa fa-check-circle"></i>
+                <i class="fa fa-exclamation-circle"></i>
+                <small>Error Message</small>
+            </div>
+            <br>
+            <div class="formdesign">
+                <label for="lname">Last Name:</label>
+                <input type="text" id="lastname" class="username2">
+                <i class="fa fa-check-circle"></i>
+                <i class="fa fa-exclamation-circle"></i>
+                <small>Error Message</small>
+            </div>
+            <br>
+            <div class="formdesign">
+                <label for="pgname"> Parent/Guardian Name:</label>
+                <input type="text" id="pfirstname" class="username">
+                <i class="fa fa-check-circle"></i>
+                <i class="fa fa-exclamation-circle"></i>
+                <small>Error Message</small>
+            </div>
+
+
+            <h3 style="text-align: left; color:#8b0933; font-size: 30px;">Contact</h3>
+            <div class="formdesign" id="contact">
+                <label for="Email">Email:      </label>
+                <input type="email" id="email" class="email">
+                <i class="fa fa-check-circle"></i>
+                <i class="fa fa-exclamation-circle"></i>
+                <small>Error Message</small> <br>
+            </div>
+            <br>
+            <div class="formdesign">
+                <label for="phone">Mobile:</label>
+                <input type="tel" id="phone" pattern="[0-9]{4}[0-9]{7}">
+                <i class="fa fa-check-circle"></i>
+                <i class="fa fa-exclamation-circle"></i>
+                <small>Error Message</small>
+            </div>
+
+
+            <h3 style="text-align: left; color:#8b0933; font-size: 30px;">Select</h3>
+            <p style="color: maroon; text-align:justify ; font-size: 20px;"> Select whether you would like to join a point or avail home tutions </p>
+            <div class="formdesign" id="classinformation">
+                <select name="choose" required>
+                    <option value="choose">select</option>
+                    <option value="hometuts">Home Tutions</option>
+                    <option value="point">Point</option>
+                </select>
+            </div>
+            <h5 style="text-align: left; color: #8b0933; font-size: 30px;">Choose area</h5>
+            <div id="area" class="formdesign">
+                <select id="selectarea" required>
+                    <option value="hihi">select</option>
+                    <option value="Baldia Town">Baldia Town</option>
+                    <option value="Bin Qasim Town">Bin Qasim</option>
+                    <option value="Gadap Town">Gadap</option>
+                    <option value="Gulberg Town">Gulberg</option>
+                    <option value="gulistan Town">Gulistan-E-Johar</option>
+                    <option value="Gulshan Town">Gulshan-E-iqbal </option>
+                    <option value="Gulshanm Town">Gulshan-E-maymar</option>
+                    <option value="Federal">FB Area</option>
+                    <option value="Jamshed Town">Jamshed Town</option>
+                    <option value="Korangi Town">Korangi</option>
+                    <option value="Liaquatabad Town">Liaquatabad Town</option>
+                    <option value="Lyari Town">Lyari Town</option>
+                    <option value="Malir Town">Malir Town</option>
+                    <option value="New Karachi Town">New Karachi</option>
+                    <option value="North Nazimabad Town">North Nazimabad</option>
+                    <option value="Orangi Town">Orangi Town</option>
+                    <option value="Saddar Town">Saddar</option>
+                    <option value="Shah Faisal town">Shah Faisal</option>
+                    <option value="Saddar town">Saddar</option>
+
+                </select>
+            </div>
+            <h5 style="text-align: left; color:#8b0933; font-size: 30px;">Enter Address</h5>
+            <div id="address" class="formdesign">
+                <input type="text" id="=add" style="width:90%;"></textarea>
+                <i class="fa fa-check-circle"></i>
+                <i class="fa fa-exclamation-circle"></i>
+                <small>Error Message</small>
+            </div>
+            <input type="submit" name="Submit" id="submit" class="but">
+            <script src="~/Scripts/student.js"></script>
+        </form>
+    </div>
+</body>
+</html>

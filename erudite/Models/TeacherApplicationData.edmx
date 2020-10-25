@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="StaffAndStudentsDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Days">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="days" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="days" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Requirements">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="selectedSlot" Type="int" Nullable="false" />
+          <Property Name="selectedSubject" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="selectedSection" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="selectedSchool" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeacherBioData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="dateOfBirth" Type="date" Nullable="false" />
+          <Property Name="number" Type="nchar" MaxLength="11" Nullable="false" />
+          <Property Name="email" Type="nchar" MaxLength="255" Nullable="false" />
+          <Property Name="NIC" Type="nchar" MaxLength="13" Nullable="false" />
+          <Property Name="Qualification" Type="nchar" MaxLength="255" Nullable="false" />
+          <Property Name="Field" Type="nchar" MaxLength="255" Nullable="false" />
+          <Property Name="address" Type="nchar" MaxLength="255" Nullable="false" />
+          <Property Name="image" Type="nchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Association Name="FK">
+          <End Role="TeacherBioData" Type="Self.TeacherBioData" Multiplicity="1" />
+          <End Role="Days" Type="Self.Days" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TeacherBioData">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Days">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requirements_ToTable">
+          <End Role="TeacherBioData" Type="Self.TeacherBioData" Multiplicity="1" />
+          <End Role="Requirements" Type="Self.Requirements" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TeacherBioData">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Requirements">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StaffAndStudentsDataModelStoreContainer">
+          <EntitySet Name="Days" EntityType="Self.Days" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Requirements" EntityType="Self.Requirements" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeacherBioData" EntityType="Self.TeacherBioData" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK" Association="Self.FK">
+            <End Role="TeacherBioData" EntitySet="TeacherBioData" />
+            <End Role="Days" EntitySet="Days" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requirements_ToTable" Association="Self.FK_Requirements_ToTable">
+            <End Role="TeacherBioData" EntitySet="TeacherBioData" />
+            <End Role="Requirements" EntitySet="Requirements" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StaffAndStudentsDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Day">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="days" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="days" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TeacherBioData" Relationship="Self.FK" FromRole="Days" ToRole="TeacherBioData" />
+        </EntityType>
+        <EntityType Name="TeacherBioData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="dateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="number" Type="String" MaxLength="11" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="NIC" Type="String" MaxLength="13" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Qualification" Type="String" MaxLength="255" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Field" Type="String" MaxLength="255" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="image" Type="String" MaxLength="255" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Days" Relationship="Self.FK" FromRole="TeacherBioData" ToRole="Days" />
+          <NavigationProperty Name="Requirement" Relationship="StaffAndStudentsDataModel.FK_Requirements_ToTable" FromRole="TeacherBioData" ToRole="Requirement" />
+        </EntityType>
+        <Association Name="FK">
+          <End Role="TeacherBioData" Type="Self.TeacherBioData" Multiplicity="1" />
+          <End Role="Days" Type="Self.Day" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TeacherBioData">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Days">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StaffAndStudentsDataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Days" EntityType="Self.Day" />
+          <EntitySet Name="TeacherBioDatas" EntityType="Self.TeacherBioData" />
+          <AssociationSet Name="FK" Association="Self.FK">
+            <End Role="TeacherBioData" EntitySet="TeacherBioDatas" />
+            <End Role="Days" EntitySet="Days" />
+          </AssociationSet>
+          <EntitySet Name="Requirements" EntityType="StaffAndStudentsDataModel.Requirement" />
+          <AssociationSet Name="FK_Requirements_ToTable" Association="StaffAndStudentsDataModel.FK_Requirements_ToTable">
+            <End Role="TeacherBioData" EntitySet="TeacherBioDatas" />
+            <End Role="Requirement" EntitySet="Requirements" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Requirement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="selectedSlot" Type="Int32" Nullable="false" />
+          <Property Name="selectedSubject" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="selectedSection" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="TeacherBioData" Relationship="StaffAndStudentsDataModel.FK_Requirements_ToTable" FromRole="Requirement" ToRole="TeacherBioData" />
+          <Property Name="selectedSchool" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Requirements_ToTable">
+          <End Type="StaffAndStudentsDataModel.TeacherBioData" Role="TeacherBioData" Multiplicity="1" />
+          <End Type="StaffAndStudentsDataModel.Requirement" Role="Requirement" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TeacherBioData">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Requirement">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StaffAndStudentsDataModelStoreContainer" CdmEntityContainer="StaffAndStudentsDataEntities">
+          <EntitySetMapping Name="Days">
+            <EntityTypeMapping TypeName="StaffAndStudentsDataModel.Day">
+              <MappingFragment StoreEntitySet="Days">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="days" ColumnName="days" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeacherBioDatas">
+            <EntityTypeMapping TypeName="StaffAndStudentsDataModel.TeacherBioData">
+              <MappingFragment StoreEntitySet="TeacherBioData">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="dateOfBirth" ColumnName="dateOfBirth" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="NIC" ColumnName="NIC" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="Field" ColumnName="Field" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="image" ColumnName="image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requirements">
+            <EntityTypeMapping TypeName="StaffAndStudentsDataModel.Requirement">
+              <MappingFragment StoreEntitySet="Requirements">
+                <ScalarProperty Name="selectedSchool" ColumnName="selectedSchool" />
+                <ScalarProperty Name="selectedSection" ColumnName="selectedSection" />
+                <ScalarProperty Name="selectedSubject" ColumnName="selectedSubject" />
+                <ScalarProperty Name="selectedSlot" ColumnName="selectedSlot" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

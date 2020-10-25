@@ -1,0 +1,242 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+
+
+    <style>
+        .container-fluid {
+            border: 8px solid white;
+            background-color: white;
+        }
+
+        .heading {
+            background-image: linear-gradient(to right, rgba(160, 20, 80, 0.9),rgba(100, 0, 50, 0.9));
+            height: 90px;
+            text-align: center;
+        }
+
+        h1 {
+            padding-left: 25%;
+            padding-top: 20px;
+            font-family: 'Kaushan Script', cursive;
+            letter-spacing: 1mm;
+            font-size: 50px;
+            color: rgba(12, 8, 3, 0.945);
+            font-weight: bold;
+        }
+
+        .headerList ul {
+            text-decoration: none;
+            float: right;
+            margin: auto 0;
+            margin-left: auto;
+            margin-right: 2%;
+        }
+
+            .headerList ul li {
+                display: inline-block;
+            }
+
+        .headerList {
+            background-image: linear-gradient(to right, rgba(130, 20, 80, 0.6),rgba(93, 0, 30, 0.9));
+            height: 100px;
+        }
+
+            .headerList ul li a {
+                color: whitesmoke;
+                font-weight: bold;
+                font-size: 1.6em;
+                font-family: Arial, Helvetica, sans-serif;
+                margin-left: 25px;
+            }
+
+        .student {
+            background-image: linear-gradient(to right, rgba(130, 20, 80, 0.6),rgba(93, 0, 30, 0.9));
+            color: black;
+            font-size: 20px;
+        }
+
+        h3 {
+            color: rgb(226, 223, 216);
+            padding-left: 10px;
+            font-weight: bold;
+        }
+
+        .btn {
+            background-image: linear-gradient(rgb(218, 194, 178), rgb(228, 153, 184));
+            border-color: rgb(63, 1, 20);
+            font-weight: bold;
+            color: rgb(46, 3, 16);
+            border-radius: 35px;
+            border-width: 3px;
+            font-size: 15px;
+            letter-spacing: 1mm;
+            margin-left: 80px;
+        }
+
+        .pink {
+            background-image: linear-gradient( rgba(150, 20, 80, 0.9),rgba(93, 0, 50, 0.9));
+            color: papayawhip;
+        }
+
+        .footer {
+            background-image: linear-gradient( rgba(160, 20, 80, 0.9),rgba(100, 0, 50, 0.9));
+            color: white;
+        }
+
+        .lw {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding-left: 500px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-right: 500px;
+        }.student.ml-5{
+            border:none;
+            transform:scale(1);
+             transition:0.5s ease-in-out;
+        }
+        .student.ml-5:hover {
+            border: 7px solid rgb(241, 191, 104);
+            transform: scale(1.1);
+        }
+
+        .row.w3-content.w3-section img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+
+
+        <div class="row  headerList">
+            <img id="logo" src="~/Image/image/ii.jpg" style="height: 100px; margin: 0 4%  ;">
+
+            <ul>
+                <li><a href="#services">SERVICES</a></li>
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+
+            </ul>
+
+        </div>
+        <div class="row w3-content w3-section" style="max-width:80%; margin: 1.5% auto;">
+            <img class="mySlides" src="~/Image/image/math.jpg">
+            <img class="mySlides" src="~/Image/image/book1.jpg">
+            <img class="mySlides" src="~/Image/image/book2.jpg">
+            <img class="mySlides" src="~/Image/image/book 4.jpg">
+
+        </div>
+        <script>
+     var myIndex = 0;
+     carousel();
+
+     function carousel() {
+       var i;
+       var x = document.getElementsByClassName("mySlides");
+       for (i = 0; i < x.length; i++) {
+         x[i].style.display = "none";
+       }
+       myIndex++;
+       if (myIndex > x.length) {myIndex = 1}
+       x[myIndex-1].style.display = "block";
+       setTimeout(carousel, 5000); // Change image every 5 seconds
+     }
+
+
+        </script>
+
+
+
+
+        <div class="row pink p-0 mt-5" id="about">
+            <div class="col-md-8 pink pt-2">
+                <h2>ABOUT</h2><br><br>
+            </div>
+            <div class="col-md-4 pink p-0">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS0AK8yNlhJyoThGOYlxBZGwdB7nashfNay6g&usqp=CAU" style="width:100%">
+            </div>
+        </div><br><br><br>
+
+        <!-- forms button-->
+        <div class="row m-1 p-0" id="services" style="padding: 0 auto;">
+            <div class="col-md-3 p-3 student ml-5 ">
+                <div class="row">
+                    <h3>
+                        FOR STUDENTS
+                    </h3>
+                </div>
+                <div class="row p-2"><img style="width:100%" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSY89KQE1DqXihC8AHSPgnvFbEIPXOMrHhWOw&usqp=CAU"></div>
+
+                <div class="row p-3">
+                    Are you a student and looking forward for a platform where you can learn from online tutors? Here we have something
+                    for you.<br>
+                </div><br>
+               
+                <a href = '@Url.Action("Form","StudentForm")' class = "btn">APPLY</a>
+            </div>
+            <div class="col-md-3 student p-3 ml-5 ">
+                <div class="row">
+                    <h3>
+                        FOR TEACHERS
+                    </h3>
+                </div>
+                <div class="row p-2">
+                    <img style="width:100%" src="data:image/jpeg;base64,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">
+                </div>
+
+                <div class="row p-3">
+                    If you are a teacher and want to give online tuitions here we have a platform for you!
+                    <br>
+                </div><br>
+                <a href='@Url.Action("TeachingCategory","TeacherApplication")' class="btn">APPLY</a>
+            </div>
+            <div class="col-md-3 p-3 student ml-5">
+                <div class="row">
+                    <h3>
+                        FOR INSTITUTES
+                    </h3>
+                </div>
+                <div class="row p-2">
+                    <img style="width:100%" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQsQ6IzvACD0yUkBA3pLzdJeHzQWNJEXWbiYg&usqp=CAU">
+                </div>
+
+                <div class="row p-3">
+                    here are some institutes in which our tutors can be available for those who want physical tuitions rather than online.
+                    <br>
+                </div>
+                <button class="btn">SEE MORE</button>
+            </div>
+        </div>
+        <br><br>
+        <div class="row footer" id="contact">
+            <div class="co-md-4 p-5 ml-5">
+                <h4>Contact Us:</h4><br><br>phone no:+34892156790<br>cell no :<br>03042806016<br>03003267451
+            </div>
+            <div class="co-md-4 p-5 ml-5">
+                <h4>Email:</h4><br><br>Email 1:sidamin546@gmnail.com<br>Email 02:parihan2806@gmail.com<br>Email 3:haiqaadil23@gmail.com
+            </div>
+
+        </div>
+        <div class="row lw ">
+            All copyrights are reserved
+        </div>
+    </div>
+
+</body>
+</html>
+
+
